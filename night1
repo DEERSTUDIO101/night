@@ -570,6 +570,11 @@ newNotification:Destroy()
 end
 
 local function Unhide(Window, currentTab)
+    -- Überprüfe, ob SizeBleh korrekt zugewiesen wurde
+    if SizeBleh == nil then
+        SizeBleh = Window.Size -- Falls es nicht zugewiesen wurde
+    end
+    
     -- Setzt die Größe und Sichtbarkeit des Fensters
     Window.Size = SizeBleh
     Window.Elements.Visible = true
@@ -612,8 +617,6 @@ end
 -- Hier sicherstellen, dass Unhide korrekt aufgerufen wird:
 -- Beispielaufruf:
 -- Unhide(WindowInstance, "AktiverTabName")
-
-
 ----------------------------------------------------------------------------------------
 local MainSize
 local MinSize
