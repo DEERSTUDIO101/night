@@ -609,6 +609,11 @@ local function Unhide(Window, currentTab)
     end
 end
 
+-- Hier sicherstellen, dass Unhide korrekt aufgerufen wird:
+-- Beispielaufruf:
+-- Unhide(WindowInstance, "AktiverTabName")
+
+
 ----------------------------------------------------------------------------------------
 local MainSize
 local MinSize
