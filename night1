@@ -570,39 +570,43 @@ newNotification:Destroy()
 end
 
 local function Unhide(Window, currentTab)
-	Window.Size = SizeBleh
-	Window.Elements.Visible = true
-	Window.Visible = true
-	task.wait()
-	
-	-- Setzt die Hintergrundtransparenz ohne Tween
-	Window.BackgroundTransparency = 0.2
-	Window.Elements.BackgroundTransparency = 0.08
-	Window.Line.BackgroundTransparency = 0
-	Window.Title.Title.TextTransparency = 0
-	Window.Title.subtitle.TextTransparency = 0
-	Window.Logo.ImageTransparency = 0
-	Window.Navigation.Line.BackgroundTransparency = 0
+    -- Setzt die Größe und Sichtbarkeit des Fensters
+    Window.Size = SizeBleh
+    Window.Elements.Visible = true
+    Window.Visible = true
+    task.wait()
+    
+    -- Setzt die Hintergrundtransparenz ohne Tween
+    Window.BackgroundTransparency = 0.2
+    Window.Elements.BackgroundTransparency = 0.08
+    Window.Line.BackgroundTransparency = 0
+    Window.Title.Title.TextTransparency = 0
+    Window.Title.subtitle.TextTransparency = 0
+    Window.Logo.ImageTransparency = 0
+    Window.Navigation.Line.BackgroundTransparency = 0
 
-	for _, TopbarButton in ipairs(Window.Controls:GetChildren()) do
-		if TopbarButton.ClassName == "Frame" and TopbarButton.Name ~= "Theme" then
-			TopbarButton.Visible = true
-			TopbarButton.BackgroundTransparency = 0.25
-			TopbarButton.UIStroke.Transparency = 0.5
-			TopbarButton.ImageLabel.ImageTransparency = 0.25
-		end
-	end
-	for _, tabbtn in ipairs(Window.Navigation.Tabs:GetChildren()) do
-		if tabbtn.ClassName == "Frame" and tabbtn.Name ~= "InActive Template" then
-			if tabbtn.Name == currentTab then
-				-- Setzt die Transparenz ohne Tween
-				tabbtn.BackgroundTransparency = 0
-				tabbtn.UIStroke.Transparency = 0.41
-			end
-			tabbtn.ImageLabel.ImageTransparency = 0
-			tabbtn.DropShadowHolder.DropShadow.ImageTransparency = 1
-		end
-	end
+    -- Durchlaufe alle Steuerungs-Elemente und setze ihre Eigenschaften
+    for _, TopbarButton in ipairs(Window.Controls:GetChildren()) do
+        if TopbarButton.ClassName == "Frame" and TopbarButton.Name ~= "Theme" then
+            TopbarButton.Visible = true
+            TopbarButton.BackgroundTransparency = 0.25
+            TopbarButton.UIStroke.Transparency = 0.5
+            TopbarButton.ImageLabel.ImageTransparency = 0.25
+        end
+    end
+    
+    -- Durchlaufe alle Tabs und setze deren Transparenz
+    for _, tabbtn in ipairs(Window.Navigation.Tabs:GetChildren()) do
+        if tabbtn.ClassName == "Frame" and tabbtn.Name ~= "InActive Template" then
+            if tabbtn.Name == currentTab then
+                -- Setzt die Transparenz des aktiven Tabs
+                tabbtn.BackgroundTransparency = 0
+                tabbtn.UIStroke.Transparency = 0.41
+            end
+            tabbtn.ImageLabel.ImageTransparency = 0
+            tabbtn.DropShadowHolder.DropShadow.ImageTransparency = 1
+        end
+    end
 end
 
 ----------------------------------------------------------------------------------------
